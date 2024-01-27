@@ -1,7 +1,19 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, request
 
 app = Flask(__name__)
 
-@app.route("/")
-def hello_world():
-    return render_template("index.html", title="Hello")
+@app.route("/", methods=["GET", "POST"])
+def index():
+    a=1
+    b=1
+    c=1
+    if request.method == "POST":
+        text = request.form["1234"]
+        return text
+    else:
+        return render_template("index.html")
+
+if __name__ == '__main__':
+    
+    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
